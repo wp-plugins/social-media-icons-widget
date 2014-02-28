@@ -1,10 +1,10 @@
 === Social Icons Widget ===
 Contributors: dannisbet
 Tags: social, media, widget, follow, profile, icons, twitter, facebook, linkedin, forrst, dribbble
-Donate link: http://dannisbet.com/
+Donate link: https://github.com/dannisbet/social-icons-widget
 Requires at least: 3.5.1
-Tested up to: 3.6-beta2
-Stable tag: 2013.05
+Tested up to: 3.8.1
+Stable tag: 14.03
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,15 +16,14 @@ The Social Media Icons widget takes a simple, extendable approach to displaying 
 
 = Extending =
 
-Developers can easily extend the plugin to accept additional website profiles and upload custom icons to replace the default set. The widget settings allow for three different sizes by default and users can choose to display a label next to each icon.
+By default, the Social Icons Widget provides a variety of popular social media websites. Developers can easily add more social media websites by creating a filter in the active theme's functions.php file like such:
 
-By default, the Social Icons Widget provides a variety of popular social media websites. However, it's been structured to allow for easy addition of new social media profiles, or removal of unwanted ones.
-
-To edit the list of social media profiles, open social-media-icons-widget.php and locate line 32, which contains the $social_accounts array. Any edits made to this array will be reflected through the entire widget. There's no need to find/replace in any other file.
-
-The structure of the array follows a simple format:
-
-'Full Website Name' => 'full-website-id'
+	function add_new_icons($icon_list) {
+		$icon_list['Full Website Name'] = 'full-website-id';
+ 
+		return $icon_list;
+	}
+	add_filter('social_icon_accounts', 'add_new_icons');
 
 The full-website-id should reflect the name of the image you create in each of the icon folder sizes, or in your custom icon directory. It is also used to populate the class field of the icon when the widget displays. The Social Icon Widget looks for .gif, .jpg, .jpeg, and .png in order and returns the first extention it finds.
 
@@ -53,6 +52,10 @@ Coming soon.
 
 == Changelog ==
 
+= 14.03 =
+* Removed @getimagesize function for compatibility purposes
+* New accounts are now added via WordPress filter rather than editing core plugin code
+
 = 2013.05 =
 * Fixed image and CSS paths
 
@@ -63,6 +66,9 @@ Coming soon.
 * Initial commit
 
 == Upgrade Notice ==
+
+= 14.03 =
+Removed @getimagesize function for compatibility purposes. New accounts are now added via WordPress filter rather than editing core plugin code.
 
 = 2013.05 =
 Fixed image and CSS paths
