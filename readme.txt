@@ -1,10 +1,10 @@
 === Social Icons Widget ===
 Contributors: dannisbet
-Tags: social, media, widget, follow, profile, icons, About.me, Behance, Dribbble, Email, Facebook, Flickr, Forrst, FourSquare, GitHub, Google+, Instagram, Klout, LinkedIn, Medium, Path, Pinterest, RSS, StumbleUpon, Technorati, Tumblr, Twitter, Vimeo, WordPress, Yelp, YouTube, Zerply
+Tags: social, media, widget, follow, profile, icons, 500px, About.me, Behance, Dribbble, Codepen, Email, Envato, Facebook, Flickr, FourSquare, GitHub, Google+, Instagram, Kickstarter, Klout, LinkedIn, Medium, Path, Pinterest, RSS, Speaker Deck, StumbleUpon, Technorati, Tumblr, Twitter, Vimeo, Vine, WordPress, Yelp, YouTube, Zerply
 Donate link: https://github.com/dannisbet/social-icons-widget
 Requires at least: 3.5.1
 Tested up to: 3.9
-Stable tag: 14.05
+Stable tag: 14.07
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -13,21 +13,6 @@ Displays a list of social media website icons and a link to your profile.
 == Description ==
 
 The Social Media Icons widget takes a simple, extendable approach to displaying links to your social media profiles in WordPress. The purpose of this plugin was to strip away the complexities I found most other plugins to have and simply display a set of basic social icons in an unordered list. There's no frills and no fanciness, making it easy to style to your website's look.
-
-= Extending =
-
-By default, the Social Icons Widget provides a variety of popular social media websites. Developers can easily add more social media websites by creating a filter in the active theme's functions.php file like such:
-
-	function add_new_icons($icon_list) {
-		$icon_list['Full Website Name'] = 'full-website-id';
- 
-		return $icon_list;
-	}
-	add_filter('social_icon_accounts', 'add_new_icons');
-
-The full-website-id should reflect the name of the image you create in each of the icon folder sizes, or in your custom icon directory. It is also used to populate the class field of the icon when the widget displays. The Social Icon Widget looks for .gif, .jpg, .jpeg, and .png in order and returns the first extention it finds.
-
-The widget can also be branched via its [GitHub page](https://github.com/dannisbet/social-icons-widget).
 
 = Custom Icons =
 
@@ -45,7 +30,42 @@ Download the zip file and upload to your WordPress installation. Upon activation
 
 == Frequently Asked Questions ==
 
-Coming soon.
+= Extending =
+
+Developers can easily add more social media websites by creating a filter in the active theme's functions.php file like such:
+
+	function add_new_icons($icon_list) {
+		$icon_list['Full Website Name'] = 'full-website-id';
+ 
+		return $icon_list;
+	}
+	add_filter('social_icon_accounts', 'add_new_icons');
+
+The full-website-id should reflect the name of the image you create in each of the icon folder sizes, or in your custom icon directory. It is also used to populate the class field of the icon when the widget displays. The Social Icon Widget looks for .gif, .jpg, .jpeg, and .png in order and returns the first extention it finds.
+
+= Altering Widget Output =
+
+Output of each icon can be adjusted with the social_icon_output filter:
+
+	function social_icons_html_output($format) {
+		$format = '<li class="%1$s"><a href="%2$s" target="_blank">%3$s%4$s</a></li>';
+		return $format;
+	}
+	add_filter('social_icon_output', 'social_icons_html_output');
+
+The opening and closing unordered list tags can be edited or changed with the social_icon_opening_tag and social_icon_closing_tag filters:
+
+	function social_icon_opening_tag($opening) {
+		$opening = '<ul class="'.$ul_class.'">';
+		return $opening;
+	}
+	add_filter('social_icon_output', 'social_icons_html_output');
+
+	function social_icons_html_output($closing) {
+		$closing = '</ul>';
+		return $closing;
+	}
+	add_filter('social_icon_output', 'social_icons_html_output');
 
 == Screenshots ==
 
@@ -53,6 +73,12 @@ Coming soon.
 2. Widget settings via the Appearance > Widgets screen.
 
 == Changelog ==
+
+= 14.07 =
+* Added 500px, Codepen, Envato, Kickstarter, Speaker Deck, Vine
+* Removed Forrst
+* Added ability to filter opening, closing tags and HTML for icon output.
+* Added target="_blank" for links to open in a new window by default.
 
 = 14.05 =
 * Fixed broken image links when WordPress is installed under a directory.

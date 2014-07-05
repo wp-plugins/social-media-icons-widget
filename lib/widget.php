@@ -1,11 +1,5 @@
 <?php
 global $social_accounts;
-
-$data = array();
-foreach ($social_accounts as $site => $id) {
-	$data[$id] = $instance[$id];
-}
-
 extract($args);
 
 $title = empty($instance['title']) ? 'Follow Us' : apply_filters('widget_title', $instance['title']);
@@ -26,10 +20,16 @@ else { $ul_class = ''; }
 $ul_class .= 'icons-'.$icons;
 ?>
 
-<ul class="<?php echo $ul_class; ?>">
+<?php echo apply_filters('social_icon_opening_tag', '<ul class="'.$ul_class.'">'); ?>
+
 <?php foreach($social_accounts as $title => $id) : ?>
 	<?php if($instance[$id] != '' && $instance[$id] != 'http://') :
 		
+		global $data;
+		global $icon_output;
+
+		$data['id'] = $id;
+		$data['url'] = $instance[$id];
 		$custom_sizes = array('custom_small','custom_medium','custom_large');
 		
 		if (in_array($icons, $custom_sizes)) {
@@ -60,17 +60,22 @@ $ul_class .= 'icons-'.$icons;
 			$icon = '';
 		}
 
-		if ( $icon ) { $image = '<img class="site-icon" src="'.$icon.'" alt="'.$title.'" title="'.$title.'" />'; }
-		else { $image = ''; }
+		if ( $icon ) { $data['image'] = '<img class="site-icon" src="'.$icon.'" alt="'.$title.'" title="'.$title.'" />'; }
+		else { $data['image'] = ''; }
 		
-		if($labels != 'show') { $title = ''; }
-		else { $title = '<span class="site-label">'.$title.'</span>'; }
-		
+		if($labels != 'show') { $data['title'] = ''; }
+		else { $data['title'] = '<span class="site-label">'.$title.'</span>'; }
+	
+		$format = '<li class="%1$s"><a href="%2$s" target="_blank">%3$s%4$s</a></li>';
+		$icon_output = apply_filters('social_icon_output', $format);
+		echo vsprintf($icon_output, $data);
+
 	?>
-		<li><a href="<?php echo $instance[$id]; ?>"><?php echo $image; ?><?php echo $title; ?></a></li>
+		
 	<?php endif; ?>
 <?php endforeach; ?>
-</ul>
+
+<?php echo apply_filters('social_icon_closing_tag', '</ul>'); ?>
 
 <?php 
 echo $after_widget;
