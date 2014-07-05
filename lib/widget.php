@@ -38,7 +38,11 @@ $ul_class .= 'icons-'.$icons;
 		}
 		else {
 			$siw_abs_path = str_replace('lib/', '', plugin_dir_path( __FILE__ ));
-			$icon_path =  $siw_abs_path . 'icons/'.$icons.'/'.$id.'.{gif,jpg,jpeg,png}';			
+			$icon_path =  $siw_abs_path . 'icons/'.$icons.'/'.$id.'.{gif,jpg,jpeg,png}';
+
+			if($icons == 'large') { $imgsize = 'height="64" width="64"'; }
+			elseif($icons == 'medium') { $imgsize = 'height="32" width="32"'; }
+			elseif($icons == 'small') { $imgsize = 'height="16" width="16"'; }
 		}
 		
 		$result = glob( $icon_path, GLOB_BRACE );
@@ -60,7 +64,7 @@ $ul_class .= 'icons-'.$icons;
 			$icon = '';
 		}
 
-		if ( $icon ) { $data['image'] = '<img class="site-icon" src="'.$icon.'" alt="'.$title.'" title="'.$title.'" />'; }
+		if ( $icon ) { $data['image'] = '<img class="site-icon" src="'.$icon.'" alt="'.$title.'" title="'.$title.'" '.$imgsize.' />'; }
 		else { $data['image'] = ''; }
 		
 		if($labels != 'show') { $data['title'] = ''; }
