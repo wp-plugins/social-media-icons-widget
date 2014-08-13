@@ -1,10 +1,10 @@
 === Social Icons Widget ===
 Contributors: dannisbet
 Tags: social, media, widget, follow, profile, icons, 500px, About.me, Behance, Dribbble, Codepen, Email, Envato, Facebook, Flickr, FourSquare, GitHub, Google+, Instagram, Kickstarter, Klout, LinkedIn, Medium, Path, Pinterest, RSS, Speaker Deck, StumbleUpon, Technorati, Tumblr, Twitter, Vimeo, Vine, WordPress, Yelp, YouTube, Zerply
-Donate link: https://github.com/dannisbet/social-icons-widget
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CJN7XU3Z7XHDL
 Requires at least: 3.5.1
 Tested up to: 3.9
-Stable tag: 14.07
+Stable tag: 14.08
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,21 +14,21 @@ Displays a list of social media website icons and a link to your profile.
 
 The Social Media Icons widget takes a simple, extendable approach to displaying links to your social media profiles in WordPress. The purpose of this plugin was to strip away the complexities I found most other plugins to have and simply display a set of basic social icons in an unordered list. There's no frills and no fanciness, making it easy to style to your website's look.
 
-= Custom Icons =
-
-Custom icons are easy to add. To enable them, select "Custom" from the Icon Type dropdown in the widget settings. In the directory of your active theme, create a folder titled 'social_icons'. Within that directory, add folders titled 'small', 'medium', and 'large' for each icon size you wish to use. Add your icons in .gif, .jpg, .jpeg, or .png format, using the name of the ID in the $social_accounts array (details above).
-
 = Icons =
 
 Default icons are from the [Simple Icons](http://simpleicons.org/) set created by Dan Leech.
 
-Email envelope icon is from Cy Me at [Noun Project](http://thenounproject.com/term/envelope/24786/).
+Envelope designed by [Cy Me](http://www.thenounproject.com/Litrynn) from the [Noun Project](http://www.thenounproject.com)
 
 == Installation ==
 
 Download the zip file and upload to your WordPress installation. Upon activation, widget is available under Appearance > Widgets. Drag the widget into your sidebar, adjust the settings, and populate the profiles you wish to show on your website.
 
 == Frequently Asked Questions ==
+
+= Custom Icons =
+
+Custom icons are easy to add. To enable them, select "Custom" from the Icon Type dropdown in the widget settings. In the directory of your active theme, create a folder titled 'social_icons'. Within that directory, add folders titled 'small', 'medium', and 'large' for each icon size you wish to use. Add your icons in .gif, .jpg, .jpeg, or .png format, following the naming format used for the default set of icons.
 
 = Extending =
 
@@ -74,6 +74,9 @@ The opening and closing unordered list tags can be edited or changed with the so
 
 == Changelog ==
 
+= 14.08 =
+* Added prefixes to PHP variables to prevent conflicts with other plugins.
+
 = 14.07 =
 * Added 500px, Codepen, Envato, Kickstarter, Speaker Deck, Vine
 * Removed Forrst
@@ -91,10 +94,10 @@ The opening and closing unordered list tags can be edited or changed with the so
 * Removed @getimagesize function for compatibility purposes
 * New accounts are now added via WordPress filter rather than editing core plugin code
 
-= 2013.05 =
+= 13.05 =
 * Fixed image and CSS paths
 
-= 2013.04 =
+= 13.04 =
 * Initial commit
 
 = trunk =
@@ -105,8 +108,8 @@ The opening and closing unordered list tags can be edited or changed with the so
 = 14.03 =
 Removed @getimagesize function for compatibility purposes. New accounts are now added via WordPress filter rather than editing core plugin code.
 
-= 2013.05 =
+= 13.05 =
 Fixed image and CSS paths
 
-= 2013.04 =
+= 13.04 =
 Initial commit to WordPress plugin repository
